@@ -1,0 +1,27 @@
+---
+- name: Configure Server and Deploy Application
+  hosts: all
+  become: yes
+  tasks:
+    - name: Update apt cache and install Docker
+      apt:
+        name: docker.io
+        state: present
+        update_cache: yes
+
+    - name: Create app directory on EC2
+      file:
+        path: /home/ubuntu/app
+        state: directory
+        mode: '0755'
+
+    - name: Copy Application files to EC2
+      copy:
+        src: ../app/
+        dest: /home/ubuntu/app/
+
+    - name: Build Docker Image
+      command: docker build -t my-portfolio-app:1.0 /home/ubuntu/app/
+
+    - name: Run Docker Container
+      command: docker run -d -p 80:80 --name webapp my-portfolio-app:1.0
