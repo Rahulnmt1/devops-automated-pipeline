@@ -1,6 +1,7 @@
 # Automated AWS Provisioning & App Deployment Pipeline
 
 ## Project Overview
+![Project Architecture Diagram](devops_pipeline_architecture.png)
 This project demonstrates a zero-touch, end-to-end automated DevOps pipeline. It uses Infrastructure as Code (IaC) to provision cloud resources, Configuration Management to automatically build and deploy a containerized web application, and Jenkins as a CI/CD orchestrator.
 
 ## Tech Stack
